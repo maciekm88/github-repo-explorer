@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HelloWorld",
-    "slug": "expo-template-default",
+    "name": "github-repo-explorer",
+    "slug": "github-repo-explorer-3fkwt3mjbrhmgp8wwwk2r",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,13 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.maciekm.githubrepoexplorer3fkwt3mjbrhmgp8wwwk2r"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.maciekm.githubrepoexplorer3fkwt3mjbrhmgp8wwwk2r"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +33,18 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "da85531f-155c-4e2d-a5d6-190ff9c75e0e"
+      }
+    },
+    "owner": "maciekm",
+    "updates": {
+      "url": "https://u.expo.dev/da85531f-155c-4e2d-a5d6-190ff9c75e0e"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
