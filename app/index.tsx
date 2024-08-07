@@ -1,7 +1,7 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { searchUsers, fetchRepos, User, Repository } from './api/github';
+import { User } from './api/github';
 import {
   Provider as PaperProvider,
   Avatar,
@@ -16,30 +16,32 @@ import {
   Dialog,
   TouchableRipple,
 } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers, clearUsers } from './redux/usersSlice';
+import { fetchUserRepos, clearRepos } from './redux/reposSlice';
+import { RootState, store } from './redux/store';
+import { Provider as ReduxProvider } from 'react-redux';
 
-export default function Index() {
+const Index = () => {
   const [username, setUsername] = useState<string>('');
-  const [users, setUsers] = useState<User[]>([]);
-  const [repos, setRepos] = useState<{ [key: string]: Repository[] }>({});
-  const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [dialogVisible, setDialogVisible] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
+  const dispatch = useDispatch();
+  const users = useSelector((state: RootState) => state.users.data);
+  const repos = useSelector((state: RootState) => state.repos.data);
   const [expandedUser, setExpandedUser] = useState<{ [key: string]: boolean }>({});
 
   const handleSearchUsers = async () => {
+    dispatch(clearUsers());
+    dispatch(clearRepos());
     try {
-      const usersData = await searchUsers(username);
-      console.log('usersData: ', usersData);
+      await dispatch(fetchUsers(username)).unwrap();
+      const usersData = store.getState().users.data;
       if (usersData.length === 0) {
         setDialogVisible(true);
-      } else {
-        setUsers(usersData);
-        setRepos({});
-        setSelectedUser(null);
-        setExpandedUser({});
       }
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching users:', error);
     }
   };
 
@@ -48,11 +50,13 @@ export default function Index() {
       setExpandedUser((prev) => ({ ...prev, [user.login]: !prev[user.login] }));
     } else {
       try {
-        const reposData = await fetchRepos(user.login);
-        setRepos((prevRepos) => ({ ...prevRepos, [user.login]: reposData }));
-        setSelectedUser(user.login);
-        setPage(1);
+        dispatch(clearRepos());
+        const existingRepos = store.getState().repos[user.login];
+        if (!existingRepos || existingRepos.length === 0) {
+          await dispatch(fetchUserRepos({ username: user.login, page: 1 })).unwrap();
+        }
         setExpandedUser((prev) => ({ ...prev, [user.login]: true }));
+        setPage(existingRepos ? Math.ceil(existingRepos.length / 5) : 1);
       } catch (error) {
         console.error(error);
       }
@@ -62,14 +66,10 @@ export default function Index() {
   const handleLoadMoreRepos = async (user: User) => {
     try {
       const nextPage = page + 1;
-      const reposData = await fetchRepos(user.login, nextPage);
-      setRepos((prevRepos) => ({
-        ...prevRepos,
-        [user.login]: [...prevRepos[user.login], ...reposData],
-      }));
+      await dispatch(fetchUserRepos({ username: user.login, page: nextPage })).unwrap();
       setPage(nextPage);
     } catch (error) {
-      console.error(error);
+      console.error(`Error loading more repos for user ${user.login}:`, error);
     }
   };
 
@@ -178,7 +178,15 @@ export default function Index() {
       </SafeAreaView>
     </PaperProvider>
   );
-}
+};
+
+const App = () => (
+  <ReduxProvider store={store}>
+    <Index />
+  </ReduxProvider>
+);
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {

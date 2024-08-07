@@ -15,7 +15,7 @@ export interface Repository {
   id: number;
 }
 
-export const searchUsers = async (username: string): Promise<User[]> => {
+export const searchUsers = async (username: string): Promise<{ items: User[] }> => {
   try {
     const response = await axios.get(
       `https://api.github.com/search/users?q=${username}&per_page=5`,
