@@ -14,6 +14,7 @@ import {
   Divider,
   Portal,
   Dialog,
+  TouchableRipple,
 } from 'react-native-paper';
 
 export default function Index() {
@@ -82,15 +83,12 @@ export default function Index() {
 
   const renderItem = ({ item }: { item: User }) => (
     <Card style={styles.card}>
-      <Button
-        mode="contained-tonal"
-        style={styles.userButton}
-        onPress={() => handleFetchRepos(item)}>
+      <TouchableRipple onPress={() => handleFetchRepos(item)} style={styles.userButton}>
         <View style={styles.userButtonContent}>
           <Avatar.Image size={50} source={{ uri: item.avatar_url }} />
           <Text style={styles.userText}>{item.login}</Text>
         </View>
-      </Button>
+      </TouchableRipple>
 
       {expandedUser[item.login] && repos[item.login] && (
         <FlatList
@@ -198,10 +196,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    padding: 5,
   },
   userText: {
     width: '75%',
     marginLeft: 20,
+    fontSize: 24,
   },
   input: {
     backgroundColor: '#828b85',
