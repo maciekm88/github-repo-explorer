@@ -1,5 +1,9 @@
 # Welcome to my Github Users & Repos Explorer app 👋
 
+![Screenshot](image.png)
+![Screenshot](image-1.png)
+![Screenshot](image-2.png)
+
 ## 📝 My comments:
 
 📌 Supported platforms: 🍏 iOS, 🤖 Android, 💻 Web
@@ -34,7 +38,7 @@
 
 🎯 Add accessibility labels, hints etc
 
-🎯 Fix flashlistHeaderComponent to do not display when changing TextInput values
+🎯 ~~Fix flashlistHeaderComponent to do not display when changing TextInput values~~ ✅ Done
 
 🎯 Check for errors & bugs on more devices.
 
