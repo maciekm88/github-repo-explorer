@@ -21,6 +21,7 @@ import { fetchUsers, clearUsers } from './redux/usersSlice';
 import { fetchUserRepos, clearRepos } from './redux/reposSlice';
 import { RootState, store } from './redux/store';
 import { Provider as ReduxProvider } from 'react-redux';
+import { setSearchQuery } from './redux/searchSlice';
 
 const Index = () => {
   const [username, setUsername] = useState<string>('');
@@ -30,8 +31,10 @@ const Index = () => {
   const users = useSelector((state: RootState) => state.users.data);
   const repos = useSelector((state: RootState) => state.repos.data);
   const [expandedUser, setExpandedUser] = useState<{ [key: string]: boolean }>({});
+  const searchQuery = useSelector((state) => state.search.query);
 
   const handleSearchUsers = async () => {
+    dispatch(setSearchQuery(username));
     dispatch(clearUsers());
     dispatch(clearRepos());
     try {
@@ -122,10 +125,10 @@ const Index = () => {
   );
 
   const flashlistHeaderComponent = () => {
-    if (!username) {
+    if (!searchQuery || users.length === 0) {
       return null;
     }
-    return <Text>Showing users of "{username}":</Text>;
+    return <Text>Showing users of "{searchQuery}":</Text>;
   };
 
   return (
