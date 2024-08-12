@@ -30,32 +30,34 @@
 
 ## UPDATE 1:
 
-🎯 ~~CODE CLEANING! e.g. Separate some components from the index file to other files etc.~~ 
+🎯 ~~CODE CLEANING! e.g. Separate some components from the index file to other files etc.~~  
 ✅ Done. Project structure changed, separated components to different files
 
-🎯 ~~ADD UNIT TESTS!~~ 
-✅ Done: 
-🪧 Added necessary dependencies for testing (@testing-library/react-native)
-🪧 Added 'testID' props to test elements
+🎯 ~~ADD UNIT TESTS!~~  
+✅ Done:  
+🪧 Added necessary dependencies for testing (@testing-library/react-native)  
+🪧 Added 'testID' props to test elements  
 🪧 Added tests to validate rendering, input handling, and function calls for SearchBar component.  
-🪧 Implemented tests for DialogComponent to ensure proper visibility toggling.
-🪧 Implemented tests for UserCard to check for correct rendering and user interactions.
+🪧 Implemented tests for DialogComponent to ensure proper visibility toggling.  
+🪧 Implemented tests for UserCard to check for correct rendering and user interactions.  
 💡 You can run the tests using `npm run test` in your project directory
 
-🎯 ~~Implement @shopify/flash-list instead of using FlatList~~ 
+🎯 ~~Implement @shopify/flash-list instead of using FlatList~~  
 ✅ Done (RepoFlashList file)
 
-🎯 ~~Add accessibility labels, hints etc~~ 
+🎯 ~~Add accessibility labels, hints etc~~  
 ✅ Done & tested with Android TalkBack
 
-🎯 ~~Fix flashlistHeaderComponent to do not display when changing TextInput values~~ 
+🎯 ~~Fix flashlistHeaderComponent to do not display when changing TextInput values~~  
 ✅ Done
 
-🎯 ~~Check for errors & bugs on more devices~~
+🎯 ~~Check for errors & bugs on more devices~~  
 ✅ Tested
 
-## WHAT TO DO NEXT:
-🎯 Add theme
+## WHAT TO DO NEXT:  
+🎯 Add theme  
+🎯 More tests
+🎯 Code review
 
 # Contact:
 
