@@ -21,15 +21,21 @@ const RepoFlashList: React.FC<RepoFlashListProps> = ({ repos, user, handleLoadMo
       estimatedItemSize={156}
       renderItem={({ item }) => (
         <View style={styles.repoItem}>
-          <Text style={styles.repoTitle}>{item.name}</Text>
+          <Text style={styles.repoTitle} accessibilityLabel={`Repository name ${item.name}`}>
+            {item.name}
+          </Text>
           <Divider />
-          <Text style={styles.repoData}>{item.description}</Text>
-          <Text style={styles.repoData}>Language: {item.language}</Text>
+          <Text style={styles.repoData} accessibilityLabel={`Description: ${item.description}`}>
+            {item.description}
+          </Text>
+          <Text style={styles.repoData} accessibilityLabel={`Language: ${item.language}`}>
+            Language: {item.language}
+          </Text>
           <View style={styles.repoStats}>
-            <Text style={styles.repoData}>
+            <Text style={styles.repoData} accessibilityLabel={`Forks: ${item.forks}`}>
               {item.forks} <Icon source="source-branch" color={'#00f'} size={18} />
             </Text>
-            <Text style={styles.repoData}>
+            <Text style={styles.repoData} accessibilityLabel={`Stars: ${item.stargazers_count}`}>
               {item.stargazers_count} <Icon source="star" color={'#ff0'} size={18} />
             </Text>
           </View>
@@ -38,11 +44,19 @@ const RepoFlashList: React.FC<RepoFlashListProps> = ({ repos, user, handleLoadMo
       ListFooterComponent={() =>
         repos.length % 5 === 0 &&
         repos.length > 0 && (
-          <Button textColor="#8000ff" onPress={() => handleLoadMoreRepos(user)}>
+          <Button
+            accessibilityLabel="Load more button"
+            accessibilityHint="Loads more repositories from GitHub"
+            accessibilityRole="button"
+            textColor="#8000ff"
+            onPress={() => handleLoadMoreRepos(user)}>
             Load more...
           </Button>
         )
       }
+      role="list"
+      accessibilityLabel="Repositories list"
+      accessibilityHint="Displays a list of selected user's repositories"
     />
   );
 };

@@ -26,8 +26,15 @@ const SearchBar: React.FC<SearchBarProps> = ({
         activeOutlineColor="#0d9"
         value={username}
         onChangeText={setUsername}
+        accessibilityLabel="GitHub username input"
+        accessibilityHint="Enter the GitHub username to search"
+        accessibilityRole="search"
       />
-      <HelperText type="error" visible={username.length > 0 && hasErrors(username)}>
+      <HelperText
+        type="error"
+        visible={username.length > 0 && hasErrors(username)}
+        accessibilityLabel="Username can only contain alphanumeric characters and dashes"
+        accessibilityHint="Displays an error if the username contains invalid characters">
         Username can only contain alphanumeric characters and dashes (-).
       </HelperText>
       <Button
@@ -38,7 +45,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
         textColor="#8000ff"
         style={styles.button}
         onPress={handleSearchUsers}
-        disabled={hasErrors(username)}>
+        disabled={hasErrors(username)}
+        accessibilityLabel="Search button"
+        accessibilityHint="Search for the GitHub username entered"
+        accessibilityRole="button">
         Search
       </Button>
     </View>

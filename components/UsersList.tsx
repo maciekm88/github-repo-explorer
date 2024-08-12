@@ -24,7 +24,11 @@ const UsersList: React.FC<UsersListProps> = ({
     if (!searchQuery || users.length === 0) {
       return null;
     }
-    return <Text>Showing users of "{searchQuery}":</Text>;
+    return (
+      <Text accessibilityLabel={`Showing users for query ${searchQuery}`}>
+        Showing users of "{searchQuery}":
+      </Text>
+    );
   };
 
   return (
@@ -41,6 +45,9 @@ const UsersList: React.FC<UsersListProps> = ({
         />
       )}
       ListHeaderComponent={flashlistHeaderComponent}
+      role="list"
+      accessibilityLabel="Users list"
+      accessibilityHint="Displays a list of GitHub users based on search query"
     />
   );
 };

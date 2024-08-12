@@ -20,10 +20,29 @@ const UserCard: React.FC<UserCardProps> = ({
   handleLoadMoreRepos,
 }) => {
   return (
-    <Card style={styles.card}>
-      <TouchableRipple onPress={() => handleFetchRepos(user)} style={styles.userButton}>
+    <Card
+      style={styles.card}
+      accessibilityLabel="User card"
+      accessibilityHint="Displays details of a GitHub user"
+      accessibilityRole="button">
+      <TouchableRipple
+        onPress={() => handleFetchRepos(user)}
+        style={styles.userButton}
+        accessibilityLabel={
+          expanded ? `Collapse repositories for ${user.login}` : `Repositories for ${user.login}`
+        }
+        accessibilityHint={
+          expanded
+            ? `Tap to collapse repositories for ${user.login}`
+            : `Tap to fetch and display repositories for ${user.login}`
+        }>
         <View style={styles.userButtonContent}>
-          <Avatar.Image size={50} source={{ uri: user.avatar_url }} />
+          <Avatar.Image
+            size={50}
+            source={{ uri: user.avatar_url }}
+            accessibilityLabel={`Avatar of ${user.login}`}
+            accessibilityRole="image"
+          />
           <Text style={styles.userText}>{user.login}</Text>
           <Icon source={expanded ? 'chevron-up' : 'chevron-down'} color={'#8000ff'} size={24} />
         </View>

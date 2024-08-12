@@ -20,7 +20,12 @@ const DialogComponent: React.FC<DialogComponentProps> = ({ dialogVisible, setDia
           <Text>The username you entered does not exist on GitHub. Please search again.</Text>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button textColor="#8000ff" onPress={() => setDialogVisible(false)}>
+          <Button
+            accessibilityLabel="OK Button"
+            accessibilityHint="Closes the error dialog"
+            accessibilityRole="button"
+            textColor="#8000ff"
+            onPress={() => setDialogVisible(false)}>
             OK
           </Button>
         </Dialog.Actions>
