@@ -15,7 +15,7 @@ const DialogComponent: React.FC<DialogComponentProps> = ({ dialogVisible, setDia
         visible={dialogVisible}
         onDismiss={() => setDialogVisible(false)}>
         <Dialog.Icon icon="alert" />
-        <Dialog.Title>Username does not exist</Dialog.Title>
+        <Dialog.Title testID="dialog-title">Username does not exist</Dialog.Title>
         <Dialog.Content>
           <Text>The username you entered does not exist on GitHub. Please search again.</Text>
         </Dialog.Content>
@@ -25,7 +25,8 @@ const DialogComponent: React.FC<DialogComponentProps> = ({ dialogVisible, setDia
             accessibilityHint="Closes the error dialog"
             accessibilityRole="button"
             textColor="#8000ff"
-            onPress={() => setDialogVisible(false)}>
+            onPress={() => setDialogVisible(false)}
+            testID="dialog-ok-button">
             OK
           </Button>
         </Dialog.Actions>

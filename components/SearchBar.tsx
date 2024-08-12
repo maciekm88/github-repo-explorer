@@ -26,9 +26,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
         activeOutlineColor="#0d9"
         value={username}
         onChangeText={setUsername}
-        accessibilityLabel="GitHub username input"
+        accessibilityLabel="GitHub username"
         accessibilityHint="Enter the GitHub username to search"
         accessibilityRole="search"
+        testID="search-input"
       />
       <HelperText
         type="error"
@@ -48,7 +49,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         disabled={hasErrors(username)}
         accessibilityLabel="Search button"
         accessibilityHint="Search for the GitHub username entered"
-        accessibilityRole="button">
+        accessibilityRole="button"
+        testID="search-button">
         Search
       </Button>
     </View>

@@ -74,31 +74,31 @@ const Index = () => {
   };
 
   return (
-    <PaperProvider>
-      <SafeAreaView style={styles.container}>
-        <SearchBar
-          username={username}
-          setUsername={setUsername}
-          hasErrors={hasErrors}
-          handleSearchUsers={handleSearchUsers}
-        />
-        <UsersList
-          users={users}
-          expandedUser={expandedUser}
-          repos={repos}
-          handleFetchRepos={handleFetchRepos}
-          handleLoadMoreRepos={handleLoadMoreRepos}
-          searchQuery={searchQuery}
-        />
-        <DialogComponent dialogVisible={dialogVisible} setDialogVisible={setDialogVisible} />
-      </SafeAreaView>
-    </PaperProvider>
+    <SafeAreaView style={styles.container}>
+      <SearchBar
+        username={username}
+        setUsername={setUsername}
+        hasErrors={hasErrors}
+        handleSearchUsers={handleSearchUsers}
+      />
+      <UsersList
+        users={users}
+        expandedUser={expandedUser}
+        repos={repos}
+        handleFetchRepos={handleFetchRepos}
+        handleLoadMoreRepos={handleLoadMoreRepos}
+        searchQuery={searchQuery}
+      />
+      <DialogComponent dialogVisible={dialogVisible} setDialogVisible={setDialogVisible} />
+    </SafeAreaView>
   );
 };
 
 const App = () => (
   <ReduxProvider store={store}>
-    <Index />
+    <PaperProvider>
+      <Index />
+    </PaperProvider>
   </ReduxProvider>
 );
 
