@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchRepos, Repository } from '../api/github';
+import { fetchRepos } from '../api/github';
+import { Repository } from '../types';
 
 export interface ReposState {
   data: { [username: string]: Repository[] };

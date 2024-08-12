@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, searchUsers } from '../api/github';
+import { searchUsers } from '../api/github';
+import { User } from '../types';
 
 export interface UsersState {
   data: User[];

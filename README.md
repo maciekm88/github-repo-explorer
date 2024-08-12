@@ -30,11 +30,11 @@
 
 ## WHAT TO DO NEXT:
 
-🎯 CODE CLEANING! e.g. Separate some components from the index file to other files etc.
+🎯 ~~CODE CLEANING! e.g. Separate some components from the index file to other files etc.~~ ✅ Done. Project structure changed, separated components to different files
 
 🎯 ADD UNIT TESTS!
 
-🎯 Implement @shopify/flash-list instead of using FlatList
+🎯 ~~Implement @shopify/flash-list instead of using FlatList~~ ✅ Done (RepoFlashList file)
 
 🎯 Add accessibility labels, hints etc
 

@@ -1,19 +1,6 @@
 import axios from 'axios';
-
-export interface User {
-  login: string;
-  id: number;
-  avatar_url: string;
-}
-
-export interface Repository {
-  name: string;
-  description: string;
-  language: string;
-  forks: number;
-  stargazers_count: number;
-  id: number;
-}
+import { User } from '../types';
+import { Repository } from '../types';
 
 export const searchUsers = async (username: string): Promise<{ items: User[] }> => {
   try {
@@ -21,8 +8,22 @@ export const searchUsers = async (username: string): Promise<{ items: User[] }> 
       `https://api.github.com/search/users?q=${username}&per_page=5`,
     );
     return response.data.items;
-  } catch (error) {
-    console.error('Error fetching users:', error);
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Error fetching users:', {
+        message: error.message,
+        status: error.response.status,
+        headers: error.response.headers,
+        data: error.response.data,
+      });
+    } else if (error.request) {
+      console.error('No response received:', {
+        message: error.message,
+        request: error.request,
+      });
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
     throw error;
   }
 };
@@ -36,8 +37,22 @@ export const fetchRepos = async (username: string, page: number = 1): Promise<Re
       },
     });
     return response.data;
-  } catch (error) {
-    console.error('Error fetching repositories:', error);
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Error fetching repositories:', {
+        message: error.message,
+        status: error.response.status,
+        headers: error.response.headers,
+        data: error.response.data,
+      });
+    } else if (error.request) {
+      console.error('No response received:', {
+        message: error.message,
+        request: error.request,
+      });
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
     throw error;
   }
 };

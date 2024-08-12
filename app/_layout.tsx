@@ -14,6 +14,7 @@ export default function RootLayout() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          headerTitleAlign: 'center',
         }}
       />
     </Stack>
