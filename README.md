@@ -36,7 +36,7 @@
 
 🎯 ~~Implement @shopify/flash-list instead of using FlatList~~ ✅ Done (RepoFlashList file)
 
-🎯 Add accessibility labels, hints etc
+🎯 ~~Add accessibility labels, hints etc~~ ✅ Done & tested with Android TalkBack
 
 🎯 ~~Fix flashlistHeaderComponent to do not display when changing TextInput values~~ ✅ Done
 
